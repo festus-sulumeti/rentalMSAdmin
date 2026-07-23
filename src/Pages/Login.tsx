@@ -1,12 +1,14 @@
+'use client';
 
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
+export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
 
-
-
-export default function Login02() {
   return (
     <div className="flex min-h-dvh items-center justify-center">
       <div className="flex flex-1 flex-col justify-center px-4 py-10 lg:px-6">
@@ -38,20 +40,34 @@ export default function Login02() {
               >
                 Password
               </Label>
-              <Input
-                autoComplete="password"
-                className="mt-2"
-                id="password-login-02"
-                name="password-login-02"
-                placeholder="**************"
-                type="password"
-              />
+              <div className="relative mt-2">
+                <Input
+                  autoComplete="password"
+                  className="pr-10"
+                  id="password-login-02"
+                  name="password-login-02"
+                  placeholder="**************"
+                  type={showPassword ? 'text' : 'password'}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-muted-foreground hover:text-foreground"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  tabIndex={-1}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </button>
+              </div>
             </div>
             <Button className="mt-4 w-full py-2 font-medium bg-green-500" type="submit">
               Sign in
             </Button>
           </form>
-
 
           <p className="mt-4 text-pretty text-muted-foreground text-xs dark:text-muted-foreground">
             By signing in, you agree to our{' '}
