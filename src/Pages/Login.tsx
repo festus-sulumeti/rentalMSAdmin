@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
