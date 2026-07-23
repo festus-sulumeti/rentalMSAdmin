@@ -12,7 +12,7 @@ export default function Login02() {
       <div className="flex flex-1 flex-col justify-center px-4 py-10 lg:px-6">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="text-balance text-center font-semibold text-foreground text-xl">
-            Log in or create account
+            Log in
           </h2>
           <form action="#" className="mt-6 space-y-4" method="post">
             <div>
