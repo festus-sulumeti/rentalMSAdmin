@@ -1,14 +1,17 @@
 'use client';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Link } from "react-router-dom"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Login() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,8 +38,10 @@ export default function Login() {
       }
 
       const data = await response.json();
-      // TODO: handle successful login (e.g. store token, redirect)
-      console.log('Login success:', data);
+      // TODO: store token/session if returned by backend, e.g.:
+      // localStorage.setItem('token', data.token);
+
+      navigate('/dashboard');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
@@ -123,13 +128,13 @@ export default function Login() {
 
           <p className="mt-4 text-pretty text-muted-foreground text-xs dark:text-muted-foreground">
             By signing in, you agree to our{' '}
-            <a className="underline underline-offset-4" href="#">
+            <Link className="underline underline-offset-4" to="#">
               terms of service
-            </a>{' '}
+            </Link>{' '}
             and{' '}
-            <a className="underline underline-offset-4" href="#">
+            <Link className="underline underline-offset-4" to="#">
               privacy policy
-            </a>
+            </Link>
             .
           </p>
         </div>
