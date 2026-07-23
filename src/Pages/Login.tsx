@@ -37,7 +37,7 @@ export default function Login() {
         throw new Error(errData?.message || 'Invalid email or password');
       }
 
-      const data = await response.json();
+    //   const data = await response.json();
       // TODO: store token/session if returned by backend, e.g.:
       // localStorage.setItem('token', data.token);
 
