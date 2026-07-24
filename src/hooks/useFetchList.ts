@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { api, getErrorMessage } from '@/lib/api';
+import type { ApiListResponse } from '@/types';
 
 /**
  * Fetches a list resource from the backend (e.g. GET /properties) and
@@ -14,10 +15,9 @@ export function useFetchList<T>(endpoint: string) {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await api.get(endpoint);
+      const response = await api.get<T[] | ApiListResponse<T>>(endpoint);
       // Accepts either a raw array or a { data: [...] } envelope.
-      const payload = response.data;
-      setData(Array.isArray(payload) ? payload : payload.data ?? []);
+      setData(Array.isArray(response) ? response : response.data ?? []);
     } catch (err) {
       setError(getErrorMessage(err, `Failed to load ${endpoint}`));
     } finally {
