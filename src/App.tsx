@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Login from './Pages/Login';
+import Dashboard from './components/Dashboard/Dashboard';
+
 
 
 function App() {
@@ -9,6 +11,7 @@ function App() {
    <>
     <Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
    </>
   )
