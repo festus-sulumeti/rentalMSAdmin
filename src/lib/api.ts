@@ -34,10 +34,11 @@ async function request<T>(
     : null;
 
   if (!response.ok) {
+    const apiMessage = (data as JsonRecord | null)?.message;
     const message =
-      (data as JsonRecord | null)?.message ||
-      response.statusText ||
-      'Something went wrong';
+      typeof apiMessage === 'string' && apiMessage.trim()
+        ? apiMessage
+        : response.statusText || 'Something went wrong';
     throw new Error(message);
   }
 
