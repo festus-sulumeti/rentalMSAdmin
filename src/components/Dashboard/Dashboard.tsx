@@ -22,7 +22,7 @@ export default function Dashboard() {
     api
       .get<DashboardStats>('/dashboard')
       .then((res) => {
-        if (isMounted) setStats(res.data);
+        if (isMounted) setStats(res);
       })
       .catch((err) => {
         if (isMounted) setError(getErrorMessage(err, 'Failed to load dashboard stats'));
